@@ -29,4 +29,9 @@ section {
 
 .display {
   background-color: rgb(182, 182, 182);
+  height: 100px;
+  width: 100%;
+  text-align: right;
+  padding: 20px;
+  font-size: 30px;
 }
