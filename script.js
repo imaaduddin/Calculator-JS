@@ -1,8 +1,8 @@
 const displayOneElement = document.querySelector(".display-1");
 const displayTwoElement = document.querySelector(".display-2");
 const tempResultElement = document.querySelector(".temp-result");
-const numbersElement = document.querySelector(".number");
-const operationsElement = document.querySelector(".operation");
+const numbersElement = document.querySelectorAll(".number");
+const operationsElement = document.querySelectorAll(".operation");
 const equalElement = document.querySelector(".equal");
 const clearElement = document.querySelector(".all-clear");
 const clearLastElement = document.querySelector(".last-entity-clear");
@@ -27,9 +27,7 @@ numbersElement.forEach(number => {
 
 operationsElement.forEach(operation => {
   operation.addEventListener("click", (e) => {
-    if (!displayTwoNumber) {
-      return;
-    }
+    if (!displayTwoNumber) result;
     haveDot = false;
     const operationName = e.target.innerText;
     if (displayOneNumber && displayTwoNumber && lastOperation) {
@@ -37,5 +35,26 @@ operationsElement.forEach(operation => {
     } else {
       result = parseFloat(displayTwoNumber);
     }
+    clearVar(operationName);
+    lastOperation = operationName;
+    console.log(result);
   })
-})
+});
+
+function clearVar(name = "") {
+  displayOneNumber += displayOneNumber + " " + name + " ";
+  displayOneElement.innerText = displayOneNumber;
+  displayTwoElement = "";
+  displayTwoNumber = "";
+  tempResultElement.innerText = result;
+}
+
+function mathOperation() {
+  if (lastOperation === "X") {
+    result = parseFloat(result) * parseFloat(displayTwoNumber);
+  } else if (lastOperation === "+") {
+    result = parseFloat(result) + parseFloat(displayTwoNumber);
+  } else if (lastOperation === "-") {
+    result = parseFloat(result) + parseFloat(displayTwoNumber);
+  }
+}
